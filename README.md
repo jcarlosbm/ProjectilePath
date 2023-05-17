@@ -11,6 +11,8 @@ ProjectilePath is an interactive and educational application designed to simulat
 * Interactive learning experience: ProjectilePath aims to enhance the understanding of projectile motion principles by providing an engaging and interactive learning environment.
 * Educational resource: The app can be a valuable tool for physics students, educators, and anyone interested in exploring the fascinating world of projectile motion.
 * 
-The source code is written in Java and utilizes MPAndroidChart:v3.1.0. Whether you're a physics enthusiast or a student looking to grasp the fundamentals of projectile motion, feel free to explore, contribute, and learn from this open-source project.
+*The source code is written in Java and utilizes MPAndroidChart:v3.1.0. Whether you're a physics enthusiast or a student looking to grasp the fundamentals of projectile motion, feel free to explore, contribute, and learn from this open-source project.*
 
-Note: This application is solely intended for educational purposes and should not be used as a substitute for rigorous scientific calculations or real-world experiments.
+[MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+
+### Note: This application is solely intended for educational purposes and should not be used as a substitute for rigorous scientific calculations or real-world experiments.
