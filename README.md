@@ -15,4 +15,6 @@ ProjectilePath is an interactive and educational application designed to simulat
 
 [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 
+[Licensed under the Apache License, Version 2.0 ](http://www.apache.org/licenses/LICENSE-2.0)
+
 ### Note: This application is solely intended for educational purposes and should not be used as a substitute for rigorous scientific calculations or real-world experiments.
