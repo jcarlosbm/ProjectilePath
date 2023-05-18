@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ProjectilePath</string>
+    <string name="btn_calculate_text">Calcular</string>
+    <string name="btn_record_text">Ejercicios Guardados</string>
 </resources>
