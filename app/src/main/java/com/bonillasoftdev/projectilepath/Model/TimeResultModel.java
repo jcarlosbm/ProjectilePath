@@ -1,6 +1,8 @@
 package com.bonillasoftdev.projectilepath.Model;
 
-public class TimeResultModel {
+import java.io.Serializable;
+
+public class TimeResultModel implements Serializable {
 
     private double calculatePositionInX;
     private double calculatePositionInY;

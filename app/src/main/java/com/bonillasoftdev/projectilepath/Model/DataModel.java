@@ -1,16 +1,20 @@
 package com.bonillasoftdev.projectilepath.Model;
 
-public class DataModel {
+import java.io.Serializable;
+
+public class DataModel implements Serializable {
     private double initialVelocity;
     private double initialAngle;
     private double time;
     private double gravity;
+    String name;
 
-    public DataModel(double initialVelocity, double initialAngle, double time, double gravity){
+    public DataModel(String name, double initialVelocity, double initialAngle, double time, double gravity){
         this.initialVelocity = initialVelocity;
         this.initialAngle = initialAngle;
         this.time = time;
         this.gravity = gravity;
+        this.name = name;
     }
 
     public double getInitialVelocity() {
@@ -26,5 +30,9 @@ public class DataModel {
     }
     public double getGravity() {
         return gravity;
+    }
+
+    public String getName() {
+        return name;
     }
 }

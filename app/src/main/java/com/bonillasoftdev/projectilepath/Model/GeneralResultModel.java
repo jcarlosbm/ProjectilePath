@@ -1,6 +1,8 @@
 package com.bonillasoftdev.projectilepath.Model;
 
-public class GeneralResultModel {
+import java.io.Serializable;
+
+public class GeneralResultModel implements Serializable {
     private double velocityComponentInX;
     private double velocityComponentInY;
     private double FlightTime;
