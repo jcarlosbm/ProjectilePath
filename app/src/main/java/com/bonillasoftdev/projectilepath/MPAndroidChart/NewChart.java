@@ -36,7 +36,7 @@ public class NewChart {
         ArrayList<Entry> entries = new ArrayList<>();
 
 
-        for (int x = 0; x <= 500; x++) {
+        for (int x = 0; x <= maxRange; x++) {
 
             // f(x) = tg(53.1°) x - ((9.8) / (2 * 37^(2) * cos^(2)(53°))) * x^2
             double yDouble = (double) Math.tan(radians) * x - (gravity / (2 * Math.pow(initialVelocity, 2) * Math.pow(Math.cos(radians), 2))) * Math.pow(x, 2);

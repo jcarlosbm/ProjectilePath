@@ -9,10 +9,9 @@ public class DataModel implements Serializable {
     private double gravity;
     String name;
 
-    public DataModel(String name, double initialVelocity, double initialAngle, double time, double gravity){
+    public DataModel(String name, double initialVelocity, double initialAngle, double gravity){
         this.initialVelocity = initialVelocity;
         this.initialAngle = initialAngle;
-        this.time = time;
         this.gravity = gravity;
         this.name = name;
     }
@@ -34,5 +33,9 @@ public class DataModel implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
     }
 }

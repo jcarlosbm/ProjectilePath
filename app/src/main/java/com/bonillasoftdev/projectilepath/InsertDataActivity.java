@@ -45,7 +45,7 @@ public class InsertDataActivity extends AppCompatActivity {
                         if (!angle.equals("") && !angle.isEmpty() && Double.parseDouble(angle) >= 0 && Double.parseDouble(angle) <= 360 ){
                             if (!gravity.equals("") && !gravity.isEmpty()){
 
-                                DataModel dataModel = new DataModel(id, Double.parseDouble(velocity), Double.parseDouble(angle), 0, Double.parseDouble(gravity));
+                                DataModel dataModel = new DataModel(id, Double.parseDouble(velocity), Double.parseDouble(angle), Double.parseDouble(gravity));
                                 GeneralResultModel generalResultModel = createGeneralResultModel(dataModel);
                                 TimeResultModel timeResultModel = createTimeResultModel(dataModel, generalResultModel);
 

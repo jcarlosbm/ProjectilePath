@@ -53,7 +53,6 @@ public class TimeEquations {
         timeResultModel.setCalculatePositionInY(calculatePositionInY(data.getTime()));
         timeResultModel.setCalculateVerticalVelocity(calculateVerticalVelocity(data.getTime()));
         timeResultModel.setCalculateHorizontalVelocity(calculateHorizontalVelocity());
-        timeResultModel.setCalculateVerticalVelocity(calculateVerticalVelocity(data.getTime()));
         timeResultModel.setCalculateSpeed(calculateSpeed(calculateHorizontalVelocity(), calculateVerticalVelocity(data.getTime())));
         timeResultModel.setCalculateDistanceToTheOrigin(calculateDistanceToTheOrigin(calculatePositionInX(data.getTime()), calculatePositionInY(data.getTime())));
         timeResultModel.setCalculateAngle(calculateAngle(calculateVerticalVelocity(data.getTime()), calculateHorizontalVelocity()));
