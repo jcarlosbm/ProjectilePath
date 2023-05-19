@@ -56,6 +56,7 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
         Log.i("Gravedad: ", ""+ dataModel.getGravity());
         Log.i("Tiempo: ", "" + dataModel.getTime());
 
+
         tv_velocityComponentInX.setText("Componente en VoX: " + generalResultModel.getVelocityComponentInX() + "m/s");
         tv_velocityComponentInY.setText("Componente en VoY: " + generalResultModel.getVelocityComponentInY() + "m/s");
         tv_maximumHeight.setText("La altura máxima del proyectil es de: " + generalResultModel.getMaximumHeight() + "m");
@@ -68,7 +69,8 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
         newChart.execute();
 
         lc_chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
-        
+
+
     }
     @Override
     public void onValueSelected(Entry entry, Highlight highlight) {

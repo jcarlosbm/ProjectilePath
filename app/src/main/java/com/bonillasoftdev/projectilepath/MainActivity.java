@@ -1,42 +1,40 @@
 package com.bonillasoftdev.projectilepath;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.bonillasoftdev.projectilepath.Equations.GeneralEquations;
-import com.bonillasoftdev.projectilepath.Equations.TimeEquations;
-import com.bonillasoftdev.projectilepath.Model.DataModel;
-import com.bonillasoftdev.projectilepath.Model.GeneralResultModel;
-import com.bonillasoftdev.projectilepath.Model.TimeResultModel;
-
 public class MainActivity extends AppCompatActivity {
-    Button btn_calculate, btn_record;
+    Button btn_calculate, btn_record, btn_settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         btn_calculate = (Button) findViewById(R.id.btn_calculate);
         btn_record = (Button) findViewById(R.id.btn_record);
+        btn_settings = (Button) findViewById(R.id.btn_settings);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        String mode = sharedPreferences.getString("dark_mode", "0");
+        toggleTheme(mode);
+
 
         btn_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DataModel data = new DataModel(37.0, 53.1, 2, 9.8);
-//
-//                GeneralEquations generalEquations = new GeneralEquations(data);
-//                GeneralResultModel resultModel = generalEquations.getGeneralResultModel();
-//
-//                TimeEquations timeEquations = new TimeEquations(data, resultModel);
-//                TimeResultModel timeResultModel = timeEquations.getTimeResultModel();
-//
-//
+
                 Intent intent = new Intent(getApplicationContext(), InsertDataActivity.class);
                 startActivity(intent);
 
@@ -49,5 +47,21 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Se implementará en futuras actualizaciones ", Toast.LENGTH_SHORT).show();
             }
         });
+
+        btn_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    private void toggleTheme(String mode) {
+        if (mode.equals("1")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
+    }
+
 }

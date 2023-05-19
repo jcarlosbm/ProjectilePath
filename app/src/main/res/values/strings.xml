@@ -2,4 +2,7 @@
     <string name="app_name">ProjectilePath</string>
     <string name="btn_calculate_text">Calcular</string>
     <string name="btn_record_text">Ejercicios Guardados</string>
+    <string name="action_settings">Settings</string>
+    <string name="text_btn_settings">Ajustes</string>
+
 </resources>

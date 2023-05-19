@@ -40,6 +40,7 @@ public class InsertDataActivity extends AppCompatActivity {
                 String angle = et_initial_angle.getText().toString();
                 String gravity = et_gravity.getText().toString();
 
+
                 if (!id.equals("") && !id.isEmpty()){
                     if (!velocity.equals("") && !velocity.isEmpty()){
                         if (!angle.equals("") && !angle.isEmpty() && Double.parseDouble(angle) >= 0 && Double.parseDouble(angle) <= 360 ){
@@ -47,15 +48,16 @@ public class InsertDataActivity extends AppCompatActivity {
                                     if (Double.parseDouble(velocity) <= 1000 && Double.parseDouble(velocity) > 0){
                                         if (Double.parseDouble(angle) <= 89 && Double.parseDouble(angle) > 1){
                                             if (Double.parseDouble(gravity) <= 100 && Double.parseDouble(gravity) >= 1 ){
-                                                DataModel dataModel = new DataModel(id, Double.parseDouble(velocity), Double.parseDouble(angle), Double.parseDouble(gravity));
-                                                GeneralResultModel generalResultModel = createGeneralResultModel(dataModel);
-                                                TimeResultModel timeResultModel = createTimeResultModel(dataModel, generalResultModel);
 
-                                                Intent intent = new Intent(getApplicationContext(), CalculateActivity.class);
-                                                intent.putExtra("dataModel", (Serializable) dataModel);
-                                                intent.putExtra("generalResultModel", (Serializable) generalResultModel);
-                                                intent.putExtra("timeResultModel", (Serializable) timeResultModel);
-                                                startActivity(intent);
+                                                    DataModel dataModel = new DataModel(id, Double.parseDouble(velocity), Double.parseDouble(angle), Double.parseDouble(gravity));
+                                                    GeneralResultModel generalResultModel = createGeneralResultModel(dataModel);
+                                                    TimeResultModel timeResultModel = createTimeResultModel(dataModel, generalResultModel);
+
+                                                    Intent intent = new Intent(getApplicationContext(), CalculateActivity.class);
+                                                    intent.putExtra("dataModel", (Serializable) dataModel);
+                                                    intent.putExtra("generalResultModel", (Serializable) generalResultModel);
+                                                    intent.putExtra("timeResultModel", (Serializable) timeResultModel);
+                                                    startActivity(intent);
 
                                             }else {
                                                 Toast.makeText(InsertDataActivity.this, "La Gravedad debe valer 1-100 m/s^2 ", Toast.LENGTH_SHORT).show();
