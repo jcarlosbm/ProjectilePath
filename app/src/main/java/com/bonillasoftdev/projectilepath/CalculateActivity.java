@@ -2,6 +2,7 @@ package com.bonillasoftdev.projectilepath;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-public class CalculateActivity extends AppCompatActivity implements OnChartValueSelectedListener{
+public class CalculateActivity extends Activity implements OnChartValueSelectedListener{
     private LineChart lc_chart;
     private TextView tv_title, tv_positionInX, tv_positionInY, tv_verticalVelocity, tv_horizontalVelocity;
     private TextView tv_speed, tv_distanceToTheOrigin, tv_angle, tv_velocityComponentInX, tv_velocityComponentInY;
@@ -50,36 +51,10 @@ public class CalculateActivity extends AppCompatActivity implements OnChartValue
         generalResultModel = (GeneralResultModel) getIntent().getSerializableExtra("generalResultModel");
         timeResultModel = (TimeResultModel) getIntent().getSerializableExtra("timeResultModel");
 
-
-        Log.i("test", "Comenzamos el test");
         Log.i("Velocidad inicial de:", "" + dataModel.getInitialVelocity());
         Log.i("Ángulo inicial de:", "" + dataModel.getInitialAngle());
         Log.i("Gravedad: ", ""+ dataModel.getGravity());
         Log.i("Tiempo: ", "" + dataModel.getTime());
-
-
-        Log.i("Componente en VoX", "" + generalResultModel.getVelocityComponentInX());
-        Log.i("Componente en VoY", "" + generalResultModel.getVelocityComponentInY());
-        Log.i("Posición en X a los 2.00s", "" + timeResultModel.getCalculatePositionInX());
-        Log.i("Posición en Y a los 2.00s", "" + timeResultModel.getCalculatePositionInY());
-        Log.i("La altura máxima del proyectil es de:", "" + generalResultModel.getMaximumHeight());
-        Log.i("El tiempo total de vuelo es de:", "" + generalResultModel.getFlightTime());
-        Log.i("El alcance máximo es de:", "" + generalResultModel.getMaximumRange());
-        Log.i("Tiempo de subida:", "" + generalResultModel.getRiseTime());
-        Log.i("Velocidad en X a los 2.00s", "" + timeResultModel.getCalculateHorizontalVelocity());
-        Log.i("Velocidad en Y a los 2.00s", "" + timeResultModel.getCalculateVerticalVelocity());
-        Log.i("Distancia recorrida a los 2.00s", "" + timeResultModel.getCalculateDistanceToTheOrigin());
-        Log.i("Rapidez a los 2.00s", "" + timeResultModel.getCalculateSpeed());
-        Log.i("Ángulo a los 2.00s", "" + timeResultModel.getCalculateAngle());
-
-        String test = "Datos: \n" +
-                "Componente en VoX: " + generalResultModel.getVelocityComponentInX() + "m/s\n" +
-                "Componente en VoY: " + generalResultModel.getVelocityComponentInY() + "m/s \n" +
-                "La altura máxima del proyectil es de: " + generalResultModel.getMaximumHeight() + "m\n" +
-                "El alcance máximo es de: " + + generalResultModel.getMaximumRange() + "m\n" +
-                "Tiempo de subida: " + generalResultModel.getRiseTime() + "s\n" +
-                "El tiempo total de vuelo es de: " + generalResultModel.getFlightTime() + "s\n"
-        ;
 
         tv_velocityComponentInX.setText("Componente en VoX: " + generalResultModel.getVelocityComponentInX() + "m/s");
         tv_velocityComponentInY.setText("Componente en VoY: " + generalResultModel.getVelocityComponentInY() + "m/s");
@@ -89,12 +64,11 @@ public class CalculateActivity extends AppCompatActivity implements OnChartValue
         tv_riseTime.setText("Tiempo de subida: " + generalResultModel.getRiseTime() + "s");
 
 
-        NewChart newChart = new NewChart(dataModel, lc_chart, generalResultModel.getMaximumRange());
-        newChart.createChart();
+        NewChart newChart = new NewChart(dataModel, lc_chart, generalResultModel.getMaximumRange(), CalculateActivity.this);
+        newChart.execute();
 
         lc_chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
-
-
+        
     }
     @Override
     public void onValueSelected(Entry entry, Highlight highlight) {

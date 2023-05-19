@@ -1,6 +1,7 @@
 package com.bonillasoftdev.projectilepath.MPAndroidChart;
 
 import com.bonillasoftdev.projectilepath.Model.DataModel;
+import com.bonillasoftdev.projectilepath.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -9,20 +10,27 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import java.util.ArrayList;
 
-public class NewChart {
+public class NewChart extends AsyncTask<Void, Void, Void> {
     DataModel data;
     private LineChart chart;
-    double initialAngle;
-    double initialVelocity;
+    private double initialAngle;
+    private double initialVelocity;
     private double gravity;
-    double radians;
-    double maxRange;
+    private double radians;
+    private double maxRange;
+    private Context context;
+    private ProgressDialog progressDialog;
 
-    public NewChart(DataModel data, LineChart chart, double maxRange){
+    public NewChart(DataModel data, LineChart chart, double maxRange, Context context) {
+        this.context = context;
         this.data = data;
         this.chart = chart;
         this.maxRange = maxRange;
@@ -30,9 +38,18 @@ public class NewChart {
         this.initialAngle = data.getInitialAngle();
         this.gravity = data.getGravity();
         radians= Math.toRadians(data.getInitialAngle());
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setProgress(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Calculando...");
+        progressDialog.setCancelable(false);
+        progressDialog.setMax(100);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setProgress(0);
+        progressDialog.show();
     }
 
-    public void createChart(){
+    private void createChart(){
         ArrayList<Entry> entries = new ArrayList<>();
 
 
@@ -82,6 +99,14 @@ public class NewChart {
     }
 
 
+    @Override
+    protected Void doInBackground(Void... voids) {
+        createChart();
+        return null;
+    }
 
-
+    @Override
+    protected void onPostExecute(Void unused) {
+        progressDialog.dismiss();
+    }
 }
