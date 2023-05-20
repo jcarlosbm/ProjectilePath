@@ -26,11 +26,6 @@ public class MainActivity extends AppCompatActivity {
         btn_record = (Button) findViewById(R.id.btn_record);
         btn_settings = (Button) findViewById(R.id.btn_settings);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        String mode = sharedPreferences.getString("dark_mode", "0");
-        toggleTheme(mode);
-
-
         btn_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,11 +52,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void toggleTheme(String mode) {
-        if (mode.equals("1")) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-
-    }
 
 }

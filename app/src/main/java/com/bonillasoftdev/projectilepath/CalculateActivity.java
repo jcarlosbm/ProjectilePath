@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +32,7 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
     private  DataModel dataModel;
     private  GeneralResultModel generalResultModel;
     private  TimeResultModel timeResultModel;
+
     String decimals;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,7 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
 
         lc_chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
 
+        alertMessage();
 
     }
     @SuppressLint("SetTextI18n")
@@ -106,6 +111,33 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
     public TimeResultModel createTimeResultModel(DataModel data, GeneralResultModel resultModel){
         TimeEquations timeEquations = new TimeEquations(data, resultModel);
         return timeEquations.getTimeResultModel();
+    }
+
+    public void alertMessage(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        String alert = sharedPreferences.getString("alert", "0");
+
+        if (alert.equals("0")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(CalculateActivity.this);
+            builder.setCancelable(false);
+            builder.setTitle("INFORMACIÓN");
+            builder.setMessage("Puede pulsar el gráfico en la curva para ver los datos en tiempo real");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+
+            builder.create().show();
+
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("alert", "1");
+            editor.apply();
+        }
+
+
     }
 }
 

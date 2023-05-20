@@ -4,5 +4,6 @@
     <string name="btn_record_text">Ejercicios Guardados</string>
     <string name="action_settings">Settings</string>
     <string name="text_btn_settings">Ajustes</string>
+    <string name="tv_tips_text">*Otras gravedades interesantes: \n Luna: 1.62m/s^2 \n Marte: 3.71m/s^2</string>
 
 </resources>
