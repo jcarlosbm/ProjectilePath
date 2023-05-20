@@ -85,7 +85,15 @@ public class SettingsActivity extends AppCompatActivity {
                 recreate();
             }
         });
+
+        s_scientific_notation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SettingsActivity.this, "Se implementará en futuras actualizaciones ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     public void loadSettings(){
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
