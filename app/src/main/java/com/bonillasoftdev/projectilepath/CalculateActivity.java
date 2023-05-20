@@ -2,7 +2,10 @@ package com.bonillasoftdev.projectilepath;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -26,10 +29,14 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
     private  DataModel dataModel;
     private  GeneralResultModel generalResultModel;
     private  TimeResultModel timeResultModel;
+    String decimals;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        decimals = sharedPreferences.getString("decimals", "2");
 
         lc_chart = (LineChart) findViewById(R.id.lc_chart);
         tv_title = (TextView) findViewById(R.id.tv_title);
@@ -57,12 +64,13 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
         Log.i("Tiempo: ", "" + dataModel.getTime());
 
 
-        tv_velocityComponentInX.setText("Componente en VoX: " + generalResultModel.getVelocityComponentInX() + "m/s");
-        tv_velocityComponentInY.setText("Componente en VoY: " + generalResultModel.getVelocityComponentInY() + "m/s");
-        tv_maximumHeight.setText("La altura máxima del proyectil es de: " + generalResultModel.getMaximumHeight() + "m");
-        tv_flightTime.setText("El tiempo total de vuelo es de: " + generalResultModel.getMaximumHeight() + "s");
-        tv_maximumRange.setText("El alcance máximo es de: " + generalResultModel.getMaximumRange() + "m");
-        tv_riseTime.setText("Tiempo de subida: " + generalResultModel.getRiseTime() + "s");
+
+        tv_velocityComponentInX.setText("Componente en VoX: " + (Double.parseDouble(String.format("%." + decimals + "f",generalResultModel.getVelocityComponentInX()))) + "m/s");
+        tv_velocityComponentInY.setText("Componente en VoY: " + (Double.parseDouble(String.format("%." + decimals + "f",generalResultModel.getVelocityComponentInY()))) + "m/s");
+        tv_maximumHeight.setText("La altura máxima del proyectil es de: " + (Double.parseDouble(String.format("%." + decimals + "f",generalResultModel.getMaximumHeight()))) + "m");
+        tv_flightTime.setText("El tiempo total de vuelo es de: " + (Double.parseDouble(String.format("%." + decimals + "f",generalResultModel.getMaximumHeight()))) + "s");
+        tv_maximumRange.setText("El alcance máximo es de: " + (Double.parseDouble(String.format("%." + decimals + "f",generalResultModel.getMaximumRange()))) + "m");
+        tv_riseTime.setText("Tiempo de subida: " + (Double.parseDouble(String.format("%." + decimals + "f",generalResultModel.getRiseTime()))) + "s");
 
 
         NewChart newChart = new NewChart(dataModel, lc_chart, generalResultModel.getMaximumRange(), CalculateActivity.this);
@@ -72,6 +80,7 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
 
 
     }
+    @SuppressLint("SetTextI18n")
     @Override
     public void onValueSelected(Entry entry, Highlight highlight) {
 
@@ -79,14 +88,14 @@ public class CalculateActivity extends Activity implements OnChartValueSelectedL
         dataModel.setTime(time);
         TimeResultModel timeResultModelNew = createTimeResultModel(dataModel, generalResultModel);
 
-        tv_title.setText("Datos para: " + time + "s" );
-        tv_positionInX.setText("Posición en X: " + timeResultModelNew.getCalculatePositionInX() + "m");
-        tv_positionInY.setText("Posición en Y: " + timeResultModelNew.getCalculatePositionInY() + "m");
-        tv_horizontalVelocity.setText("Velocidad en X: " + timeResultModelNew.getCalculateHorizontalVelocity() + "s");
-        tv_verticalVelocity.setText("Velocidad en Y: " + timeResultModelNew.getCalculateVerticalVelocity() + "s");
-        tv_distanceToTheOrigin.setText("Distancia recorrida: " + timeResultModelNew.getCalculateDistanceToTheOrigin() + "m");
-        tv_speed.setText("Rapidez: " + timeResultModelNew.getCalculateSpeed() + "m/s");
-        tv_angle.setText("Ángulo: " + timeResultModelNew.getCalculateAngle() + "grados");
+        tv_title.setText("Datos para: " + (Double.parseDouble(String.format("%." + decimals + "f",time))) + "s" );
+        tv_positionInX.setText("Posición en X: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculatePositionInX()))) + "m");
+        tv_positionInY.setText("Posición en Y: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculatePositionInY()))) + "m");
+        tv_horizontalVelocity.setText("Velocidad en X: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculateHorizontalVelocity()))) + "s");
+        tv_verticalVelocity.setText("Velocidad en Y: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculateVerticalVelocity()))) + "s");
+        tv_distanceToTheOrigin.setText("Distancia recorrida: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculateDistanceToTheOrigin()))) + "m");
+        tv_speed.setText("Rapidez: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculateSpeed()))) + "m/s");
+        tv_angle.setText("Ángulo: " + (Double.parseDouble(String.format("%." + decimals + "f",timeResultModelNew.getCalculateAngle()))) + "grados");
     }
 
     @Override

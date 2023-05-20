@@ -48,6 +48,7 @@ public class TimeEquations {
     }
     
     public TimeResultModel getTimeResultModel(){
+
         TimeResultModel timeResultModel = new TimeResultModel();
         timeResultModel.setCalculatePositionInX(calculatePositionInX(data.getTime()));
         timeResultModel.setCalculatePositionInY(calculatePositionInY(data.getTime()));

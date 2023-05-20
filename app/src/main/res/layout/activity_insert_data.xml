@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_gravity"
         android:inputType="numberDecimal"
+        android:text="9.81"
         android:hint="9.81"/>
 
     <Button
